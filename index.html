@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Entwives</title>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script src="quest.js"></script>
+
+    <style>
+        @font-face {
+            font-family: "pixel";
+            src: url("pixel.ttf") format("truetype");
+        }
+
+        * {
+            font-family: "pixel"
+        }
+
+        #gamearea {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #eee;
+            margin: auto;
+            height: 800px;
+            width: 400px;
+            padding: 3%;
+        }
+
+        #wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        #situationDiv {
+            box-sizing: border-box;
+            position: relative;
+            margin: auto;
+            padding: 10px;
+            width: 100%;
+            height: 200px;
+            background-color: #4CAF50;
+        }
+
+        #skipButton {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            cursor: pointer;
+        }
+
+        #optionsMenu {
+            position: absolute;
+            margin: auto;
+            width: 100%;
+            bottom: 0px;
+        }
+
+        #optionsMenu button {
+            box-sizing: border-box;
+            display: block;
+            width: 100%;
+            margin: 5px auto;
+            background-color: #4CAF50;
+            border: 1px solid green;
+            color: white;
+            padding: 10px 24px;
+            cursor: pointer;
+        }
+
+        #optionsMenu button:hover {
+            background-color: #3e8e41;
+        }
+
+        #artDiv {
+            box-sizing: border-box;
+            width: 100%;
+            height: 400px;
+            margin: 10px auto;
+        }
+
+        #artDiv img {
+            image-rendering: crisp-edges;
+            width: 100%;
+        }
+
+        /* #optionsMenu button:active {
+            background-color: #3e8e41;
+            box-shadow: 0 5px #666;
+            transform: translateY(4px);
+        } */
+    </style>
+</head>
+
+<body>
+
+    <div id="gamearea">
+        <div id="wrapper">
+
+            <div id="situationDiv">
+                <p id="situationText"></p>
+                <button id="skipButton">▸▸</button>
+            </div>
+            <div id="artDiv"><img src="treebeard.png"></img></div>
+            <div id="optionsMenu"></div>
+        </div>
+    </div>
+
+    <script>
+
+        var situationText = $("#situationText")
+        var optionsMenu = $("#optionsMenu")
+
+        var timer;
+        function typeWriter(txt, callback) {
+            var i = 0;
+            var speed = 40; /* The speed/duration of the effect in milliseconds */
+            clearTimeout(timer)
+            var repeat = function () {
+                if (i < txt.length) {
+                    situationText.append(txt.charAt(i));
+                    i++;
+                    timer = setTimeout(repeat, speed);
+                }
+                else {
+                    callback();
+                }
+            };
+            repeat();
+        }
+
+        function loadSituation(situation) {
+            console.log(situation.text);
+            situation.options.forEach(option => {
+                var optionButton = $("<button>" + option.text + "</button>");
+                optionButton.click(function () {
+                    situationText.empty();
+                    optionsMenu.empty();
+                    loadSituation(option.outcome());
+                });
+                optionsMenu.append(optionButton)
+            });
+            optionsMenu.hide();
+            typeWriter(situation.text, function () {
+                optionsMenu.show();
+            });
+            $("#skipButton").click(function (e) {
+                clearTimeout(timer);
+                situationText.text(situation.text);
+                optionsMenu.show();
+            });
+        }
+
+        $(function () {
+            loadSituation(questTree);
+        });
+
+    </script>
+
+
+</body>
+
+</html>
