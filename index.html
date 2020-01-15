@@ -24,8 +24,12 @@
             transform: translate(-50%, -50%);
             background: #eee;
             margin: auto;
-            height: 800px;
-            width: 400px;
+            min-height: 400px;
+            min-width: 200px;
+            max-height: 800px;
+            max-width: 400px;
+            width: 40%;
+            height: 80%;
             padding: 3%;
         }
 
@@ -83,6 +87,7 @@
         }
 
         #artDiv img {
+            image-rendering: pixelated;
             image-rendering: crisp-edges;
             width: 100%;
         }
