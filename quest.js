@@ -1,5 +1,5 @@
 var questTree = {
-    text: "Well hello there little Entling! The Entwives are lost. " +
+    text: "Well, hello there! The Entwives are lost. " +
         "You have to go find them! Which way will you search?",
     options: [
         {
