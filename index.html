@@ -6,93 +6,8 @@
     <title>Entwives</title>
     <script src="jquery-3.4.1.min.js"></script>
     <script src="quest.js"></script>
+    <link href="style.css" rel="stylesheet">
 
-    <style>
-        @font-face {
-            font-family: "pixel";
-            src: url("pixel.ttf") format("truetype");
-        }
-
-        * {
-            font-family: "pixel"
-        }
-
-        #gamearea {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translate(-50%, 0%);
-            background: #eee;
-            margin: auto;
-            min-height: 600px;
-            min-width: 200px;
-            max-height: 800px;
-            max-width: 400px;
-            width: 40%;
-            height: 80%;
-            padding: 3%;
-        }
-
-        #wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        #situationDiv {
-            box-sizing: border-box;
-            position: relative;
-            margin: auto;
-            padding: 10px;
-            width: 100%;
-            height: 200px;
-            background-color: #4CAF50;
-            overflow: scroll;
-          }
-
-        #optionsMenu {
-            position: absolute;
-            margin: auto;
-            width: 100%;
-            bottom: 0px;
-        }
-
-        #optionsMenu button {
-            box-sizing: border-box;
-            display: block;
-            width: 100%;
-            margin: 5px auto;
-            background-color: #4CAF50;
-            border: 1px solid green;
-            color: white;
-            padding: 10px 24px;
-            cursor: pointer;
-        }
-
-        #optionsMenu button:hover {
-            background-color: #3e8e41;
-        }
-
-        #artDiv {
-            box-sizing: border-box;
-            width: 100%;
-            max-height: 400px;
-            margin: 10px auto;
-        }
-
-        #artDiv img {
-            width: 100%;
-            height: 100%;
-            image-rendering: pixelated;
-            image-rendering: crisp-edges;
-        }
-
-        /* #optionsMenu button:active {
-            background-color: #3e8e41;
-            box-shadow: 0 5px #666;
-            transform: translateY(4px);
-        } */
-    </style>
 </head>
 
 <body>
@@ -101,7 +16,6 @@
         <div id="wrapper">
 
             <div id="situationDiv">
-                <p id="situationText"></p>
             </div>
             <div id="artDiv"><img src=""></img></div>
             <div id="optionsMenu"></div>
@@ -109,31 +23,46 @@
     </div>
 
     <script>
-
         var situationDiv = $("#situationDiv")
-        var situationText = $("#situationText")
         var optionsMenu = $("#optionsMenu")
+        var playerName = "";
 
         var timer;
+
         function typeWriter(txt, callback) {
+
+            var doneTyping = function () {
+                situationDiv.stop();
+                situationDiv.off();
+                optionsMenu.show();
+                callback();
+            }
+
             var i = 0;
-            var speed = 40; /* The speed/duration of the effect in milliseconds */
-            clearTimeout(timer)
-            var repeat = function () {
+            var speed = 40;
+            clearTimeout(timer);
+            var repeatTyping = function () {
                 if (i < txt.length) {
-                    situationText.append(txt.charAt(i));
+                    situationDiv.append(txt.charAt(i));
                     i++;
-                    timer = setTimeout(function(){
-                        situationDiv.animate({ scrollTop: situationDiv.height() + 100}, 10);
-                        repeat();
-                    }, speed);
-                }
-                else {
-                    situationDiv.stop();
-                    optionsMenu.show();
+                    timer = setTimeout(repeatTyping, speed);
+                    situationDiv.animate({
+                        scrollTop: situationDiv.height() + 100
+                    }, 10); //scroll to bottom
+                } else {
+                    doneTyping();
                 }
             };
-            repeat();
+            repeatTyping();
+
+            situationDiv.click(function (e) {
+                clearTimeout(timer);
+                situationDiv.text(txt);
+                situationDiv.animate({
+                    scrollTop: situationDiv.height() + 100
+                }, 100);
+                doneTyping();
+            });
         }
 
         function loadSituation(situation) {
@@ -142,7 +71,7 @@
             situation.options.forEach(option => {
                 var optionButton = $("<button>" + option.text + "</button>");
                 optionButton.click(function () {
-                    situationText.empty();
+                    situationDiv.empty();
                     optionsMenu.empty();
                     loadSituation(option.outcome());
                 });
@@ -150,19 +79,33 @@
             });
             optionsMenu.hide();
             typeWriter(situation.text, function () {
-            });
-            situationDiv.click(function (e) {
-                clearTimeout(timer);
-                situationText.text(situation.text);
-                situationDiv.animate({ scrollTop: situationDiv.height() + 100}, 100);
-                optionsMenu.show();
+
             });
         }
 
         $(function () {
-            loadSituation(questTree);
-        });
+            var introText =
+                "You are an Ent of Fangorn Forest, setting out on an adventure to find the long-lost Entwives. What is your name?";
+            typeWriter(introText, function () {
+                var textArea = $(
+                    "<textarea rows='1' maxlength='21' spellcheck='false' placeholder='Entling'></textarea>"
+                    );
+                textArea.keydown(function (e) {
+                    if (e.keyCode == 13 && !e.shiftKey) {
+                        e.preventDefault();
+                    }
+                });
+                optionsMenu.append(textArea);
+                $("<button>Submit</button>").click(function () {
+                    var value = $.trim(textArea.val());
+                    playerName = value === "" ? "Entling" : value;
+                    situationDiv.empty();
+                    optionsMenu.empty();
 
+                    loadSituation(quest(playerName));
+                }).appendTo(optionsMenu);
+            });
+        });
     </script>
 
 

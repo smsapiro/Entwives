@@ -1,0 +1,94 @@
+@font-face {
+    font-family: "pixel";
+    src: url("pixel.ttf") format("truetype");
+}
+
+* {
+    font-family: "pixel"
+}
+
+#gamearea {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    background: #eee;
+    margin: auto;
+    min-height: 600px;
+    min-width: 200px;
+    max-height: 800px;
+    max-width: 400px;
+    width: 40%;
+    height: 80%;
+    padding: 3%;
+}
+
+#wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#situationDiv {
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+    padding: 10px;
+    width: 100%;
+    height: 200px;
+    background-color: #b5721d;
+    border: 5px ridge #e07d3e;
+    overflow: scroll;
+}
+
+#optionsMenu {
+    display: block;
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    bottom: 0px;
+}
+
+#optionsMenu * {
+    display: block;
+    box-sizing: border-box;
+    margin: 5px auto;
+    width: 100%;
+    border: 2px solid #e07d3e;
+    padding: 10px 24px;
+}
+
+#optionsMenu textarea {
+    text-align: center;
+    resize: none;
+}
+
+#optionsMenu button {
+    background-color: #b5721d;
+    color: white;
+    cursor: pointer;
+}
+
+#optionsMenu button:hover {
+    background-color: #e07d3e;
+}
+
+#artDiv {
+    box-sizing: border-box;
+    width: 100%;
+    max-height: 400px;
+    margin: 10px auto;
+}
+
+#artDiv img {
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* #optionsMenu button:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+} */
