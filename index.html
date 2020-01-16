@@ -19,12 +19,12 @@
 
         #gamearea {
             position: absolute;
-            top: 50%;
+            top: 10px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, 0%);
             background: #eee;
             margin: auto;
-            min-height: 400px;
+            min-height: 600px;
             min-width: 200px;
             max-height: 800px;
             max-width: 400px;
@@ -47,14 +47,8 @@
             width: 100%;
             height: 200px;
             background-color: #4CAF50;
-        }
-
-        #skipButton {
-            position: absolute;
-            bottom: 0px;
-            right: 0px;
-            cursor: pointer;
-        }
+            overflow: scroll;
+          }
 
         #optionsMenu {
             position: absolute;
@@ -82,14 +76,15 @@
         #artDiv {
             box-sizing: border-box;
             width: 100%;
-            height: 400px;
+            max-height: 400px;
             margin: 10px auto;
         }
 
         #artDiv img {
+            width: 100%;
+            height: 100%;
             image-rendering: pixelated;
             image-rendering: crisp-edges;
-            width: 100%;
         }
 
         /* #optionsMenu button:active {
@@ -107,15 +102,15 @@
 
             <div id="situationDiv">
                 <p id="situationText"></p>
-                <button id="skipButton">▸▸</button>
             </div>
-            <div id="artDiv"><img src="treebeard.png"></img></div>
+            <div id="artDiv"><img src=""></img></div>
             <div id="optionsMenu"></div>
         </div>
     </div>
 
     <script>
 
+        var situationDiv = $("#situationDiv")
         var situationText = $("#situationText")
         var optionsMenu = $("#optionsMenu")
 
@@ -128,10 +123,14 @@
                 if (i < txt.length) {
                     situationText.append(txt.charAt(i));
                     i++;
-                    timer = setTimeout(repeat, speed);
+                    timer = setTimeout(function(){
+                        situationDiv.animate({ scrollTop: situationDiv.height() + 100}, 10);
+                        repeat();
+                    }, speed);
                 }
                 else {
-                    callback();
+                    situationDiv.stop();
+                    optionsMenu.show();
                 }
             };
             repeat();
@@ -139,6 +138,7 @@
 
         function loadSituation(situation) {
             console.log(situation.text);
+            $("#artDiv img").attr("src", situation.img)
             situation.options.forEach(option => {
                 var optionButton = $("<button>" + option.text + "</button>");
                 optionButton.click(function () {
@@ -150,11 +150,11 @@
             });
             optionsMenu.hide();
             typeWriter(situation.text, function () {
-                optionsMenu.show();
             });
-            $("#skipButton").click(function (e) {
+            situationDiv.click(function (e) {
                 clearTimeout(timer);
                 situationText.text(situation.text);
+                situationDiv.animate({ scrollTop: situationDiv.height() + 100}, 100);
                 optionsMenu.show();
             });
         }
