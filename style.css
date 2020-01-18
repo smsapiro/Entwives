@@ -4,29 +4,39 @@
 }
 
 * {
-    font-family: "pixel"
+    font-family: "pixel";
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+.fullsize {
+    width: 100%;
+    height: 100%;
 }
 
 #gamearea {
+    float: left;
+    display: block;
     position: absolute;
     top: 10px;
     left: 50%;
     transform: translate(-50%, 0%);
-    background: #eee;
+    background-color: #eee;
+    background-image: url("images/fangornbg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
     margin: auto;
     min-height: 600px;
-    min-width: 200px;
+    min-width: 300px;
     max-height: 800px;
-    max-width: 400px;
-    width: 40%;
+    max-width: 600px;
+    width: 60%;
     height: 80%;
     padding: 3%;
 }
 
 #wrapper {
     position: relative;
-    width: 100%;
-    height: 100%;
 }
 
 #situationDiv {
@@ -41,6 +51,13 @@
     overflow: scroll;
 }
 
+#artDiv {
+    box-sizing: border-box;
+    width: 70%;
+    max-height: 400px;
+    margin: 10px auto;
+}
+
 #optionsMenu {
     display: block;
     position: absolute;
@@ -53,7 +70,7 @@
     display: block;
     box-sizing: border-box;
     margin: 5px auto;
-    width: 100%;
+    width: 80%;
     border: 2px solid #e07d3e;
     padding: 10px 24px;
 }
@@ -63,28 +80,22 @@
     resize: none;
 }
 
-#optionsMenu button {
+button {
     background-color: #b5721d;
     color: white;
     cursor: pointer;
+    padding: 10px;
 }
 
-#optionsMenu button:hover {
+button:hover {
     background-color: #e07d3e;
 }
 
-#artDiv {
-    box-sizing: border-box;
-    width: 100%;
-    max-height: 400px;
-    margin: 10px auto;
-}
-
-#artDiv img {
-    width: 100%;
-    height: 100%;
-    image-rendering: pixelated;
-    image-rendering: crisp-edges;
+#restartButton{
+    display: block;
+    position: relative;
+    margin: auto;
+    top: 40px;
 }
 
 /* #optionsMenu button:active {

@@ -13,102 +13,108 @@
 <body>
 
     <div id="gamearea">
-        <div id="wrapper">
-
-            <div id="situationDiv">
-            </div>
-            <div id="artDiv"><img src=""></img></div>
+        <div id="wrapper" class="fullsize">
+            <div id="situationDiv"></div>
+            <div id="artDiv"><img src="" class="fullsize" alt=""></img></div>
             <div id="optionsMenu"></div>
+
         </div>
+        <button id="restartButton">
+            Restart
+        </button>
     </div>
 
-    <script>
-        var situationDiv = $("#situationDiv")
-        var optionsMenu = $("#optionsMenu")
-        var playerName = "";
+</body>
 
-        var timer;
+<script>
+    var situationDiv = $("#situationDiv")
+    var optionsMenu = $("#optionsMenu")
+    var playerName = "";
 
-        function typeWriter(txt, callback) {
+    var timer;
 
-            var doneTyping = function () {
-                situationDiv.stop();
-                situationDiv.off();
-                optionsMenu.show();
-                callback();
-            }
+    function typeWriter(txt, callback) {
 
-            var i = 0;
-            var speed = 40;
-            clearTimeout(timer);
-            var repeatTyping = function () {
-                if (i < txt.length) {
-                    situationDiv.append(txt.charAt(i));
-                    i++;
-                    timer = setTimeout(repeatTyping, speed);
-                    situationDiv.animate({
-                        scrollTop: situationDiv.height() + 100
-                    }, 10); //scroll to bottom
-                } else {
-                    doneTyping();
+        var doneTyping = function () {
+            situationDiv.stop();
+            situationDiv.off();
+            optionsMenu.show();
+            callback();
+        }
+
+        var i = 0;
+        var speed = 40;
+        clearTimeout(timer);
+        var repeatTyping = function () {
+            if (i < txt.length) {
+                var curChar = txt.charAt(i);
+                if(curChar === "*"){
+                    curChar = "</br>"
                 }
-            };
-            repeatTyping();
-
-            situationDiv.click(function (e) {
-                clearTimeout(timer);
-                situationDiv.text(txt);
+                situationDiv.append(curChar);
+                i++;
+                timer = setTimeout(repeatTyping, speed);
                 situationDiv.animate({
                     scrollTop: situationDiv.height() + 100
-                }, 100);
+                }, 10); //scroll to bottom
+            } else {
                 doneTyping();
-            });
-        }
+            }
+        };
+        repeatTyping();
 
-        function loadSituation(situation) {
-            console.log(situation.text);
-            $("#artDiv img").attr("src", situation.img)
-            situation.options.forEach(option => {
-                var optionButton = $("<button>" + option.text + "</button>");
-                optionButton.click(function () {
-                    situationDiv.empty();
-                    optionsMenu.empty();
-                    loadSituation(option.outcome());
-                });
-                optionsMenu.append(optionButton)
-            });
-            optionsMenu.hide();
-            typeWriter(situation.text, function () {
-
-            });
-        }
-
-        $(function () {
-            var introText =
-                "You are an Ent of Fangorn Forest, setting out on an adventure to find the long-lost Entwives. What is your name?";
-            typeWriter(introText, function () {
-                var textArea = $(
-                    "<textarea rows='1' maxlength='21' spellcheck='false' placeholder='Entling'></textarea>"
-                    );
-                textArea.keydown(function (e) {
-                    if (e.keyCode == 13 && !e.shiftKey) {
-                        e.preventDefault();
-                    }
-                });
-                optionsMenu.append(textArea);
-                $("<button>Submit</button>").click(function () {
-                    var value = $.trim(textArea.val());
-                    playerName = value === "" ? "Entling" : value;
-                    situationDiv.empty();
-                    optionsMenu.empty();
-
-                    loadSituation(quest(playerName));
-                }).appendTo(optionsMenu);
-            });
+        situationDiv.click(function (e) {
+            speed = 0;
         });
-    </script>
+    }
+
+    function loadSituation(situation) {
+        console.log(situation.text);
+        $("#gamearea").css("background-image", "url(\"" + situation.background + "\")");
+        $("#artDiv img").attr("src", situation.img);
+        situation.options.forEach(option => {
+            var optionButton = $("<button>" + option.text + "</button>");
+            optionButton.click(function () {
+                situationDiv.empty();
+                optionsMenu.empty();
+                loadSituation(option.outcome());
+            });
+            optionsMenu.append(optionButton)
+        });
+        optionsMenu.hide();
+        typeWriter(situation.text, function () {
+
+        });
+    }
+
+    $("#restartButton").click(function () {
+        location.reload();
+    });
 
 
-</body>
+    $(function () {
+        var introText =
+            "You are an Ent of Fangorn Forest, setting out on an adventure to find the long-lost Entwives. What is your name?";
+        typeWriter(introText, function () {
+            var textArea = $(
+                "<textarea rows='1' maxlength='21' spellcheck='false' placeholder='Entling'></textarea>"
+            );
+            textArea.keydown(function (e) {
+                if (e.keyCode == 13 && !e.shiftKey) {
+                    e.preventDefault();
+                }
+            });
+            optionsMenu.append(textArea);
+            $("<button>Submit</button>").click(function () {
+                var value = $.trim(textArea.val());
+                playerName = value === "" ? "Entling" : value;
+                situationDiv.empty();
+                optionsMenu.empty();
+
+                loadSituation(quest(playerName));
+            }).appendTo(optionsMenu);
+        });
+    });
+</script>
 
 </html>
