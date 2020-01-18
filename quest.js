@@ -25,7 +25,43 @@ function quest(playerName) {
             },
             {
                 text: "East",
-                outcome: null
+                outcome: function () {
+                    return {
+                        text: "You set out into the rising sun, through the expansive desert known as the Brown Lands. The sun beats hot and dry on your mossy shoulders. You allow yourself to lapse into a semi-conscious state as you wander steadfastly through the wasteland.",
+                        background: "images/brownlands.png",
+                        img: "",
+                        options: [{
+                            text: "Next",
+                            outcome: function () {
+                                var chances = [{
+                                        text: "You are jolted back to awareness by the jeering cries of Orcs. \"What’s this!\" one shouts. \"One of them tree demons?! This time he’s all alone, not got the whole forest on his side!\" You grab one of the Orcs, pick him up and throw him far away, but as you turn toward the second one he swings his axe into your abdomen. You cry out in pain and collapse to the ground.",
+                                        background: "images/brownlands.png",
+                                        img: "images/orcs.png",
+                                        options: []
+                                    },
+                                    {
+                                        text: "The sun is now behind you, and you can see in the dimming light a tower standing in front of you. Not knowing where else to go, you walk through the doors. It appears deserted. You come into a room filled with curiosities: it seems to be some sort of trophy room. Most of the trophies are insignificant to you, but in a corner lies a peculiar object that seems to be calling to you. You’re not sure why, but you know that it’s important.",
+                                        background: "images/tower.png",
+                                        img: "",
+                                        options: [{
+                                            text: "Take object",
+                                            outcome: function () {
+                                                return {
+                                                    text: "You pick it up and carry it out of the tower.",
+                                                    background: "images/tower.png",
+                                                    img: "images/seed.png",
+                                                    options: []
+                                                }
+                                            }
+                                        }],
+                                    }
+                                ]
+
+                                return chances[Math.floor(Math.random() * chances.length)];
+                            }
+                        }]
+                    }
+                }
             },
             {
                 text: "South",
