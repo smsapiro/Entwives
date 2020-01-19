@@ -99,6 +99,15 @@ button:hover {
     top: 40px;
 }
 
+footer {
+  position: absolute;
+  z-index: -1;
+  left: 0px;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
 /* #optionsMenu button:active {
     background-color: #3e8e41;
     box-shadow: 0 5px #666;

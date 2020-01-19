@@ -99,7 +99,6 @@ function quest(playerName) {
                                         }],
                                     }
                                 ]
-
                                 return chances[Math.floor(Math.random() * chances.length)];
                             }
                         }]
