@@ -100,11 +100,14 @@ button:hover {
 }
 
 footer {
+display: block;
   position: absolute;
   z-index: -1;
+  background-color: #eee;
   left: 0px;
-  bottom: 10px;
+  bottom: 0px;
   width: 100%;
+  padding: 10px;
   text-align: center;
 }
 

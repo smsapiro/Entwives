@@ -28,7 +28,7 @@ function quest(playerName) {
                                                         text: "Decline help, ask to be set free",
                                                         outcome: function () {
                                                             return {
-                                                                text: "\"I’m sorry,\" says the Elf. \"I cannot let you go.\" The rest of the Elves return and begin to sing. You discover that you are rooted to the forest floor, completely immobilized. The singing of the Elves fades away as you slip out of consciousness.",
+                                                                text: "\"I’m sorry,\" says the Elf. \"I cannot let you go.\" The rest of the Elves return and begin to sing. You discover that you are rooted to the forest floor, completely immobilized. The singing of the Elves fades away as you slip out of consciousness.**THE END",
                                                                 background: "images/elfattack.png",
                                                                 img: "images/goodelf.png",
                                                                 options: []
@@ -39,7 +39,7 @@ function quest(playerName) {
                                                         text: "Trust",
                                                         outcome: function () {
                                                             return {
-                                                                text: "\"Come with me,\" says the Elf. You follow him through the woods for many miles. At last, you reach a grove of trees different from the rest of Lothlórien. \"I think you know what these trees are,\" says the Elf. \"Are they still alive? Whether they’re alive in the same way they used to be, I cannot say. They are as alive as any tree in this forest.\" You look at them for a long time.",
+                                                                text: "\"Come with me,\" says the Elf. You follow him through the woods for many miles. At last, you reach a grove of trees different from the rest of Lothlórien. \"I think you know what these trees are,\" says the Elf. \"Are they still alive? Whether they’re alive in the same way they used to be, I cannot say. They are as alive as any tree in this forest.\" You look at them for a long time.**THE END",
                                                                 background: "images/lorien.png",
                                                                 img: "images/goodelf.png",
                                                                 options: []
@@ -74,7 +74,7 @@ function quest(playerName) {
                                             text: "Die",
                                             outcome: function () {
                                                 return {
-                                                    text: "You died.",
+                                                    text: "You died.**THE END",
                                                     background: "images/deadbg.png",
                                                     img: "",
                                                     options: []
@@ -90,7 +90,7 @@ function quest(playerName) {
                                             text: "Take object",
                                             outcome: function () {
                                                 return {
-                                                    text: "You pick it up and carry it out of the tower.",
+                                                    text: "You pick it up and carry it out of the tower.**THE END",
                                                     background: "images/darktower.png",
                                                     img: "images/seed.png",
                                                     options: []
@@ -146,7 +146,7 @@ function quest(playerName) {
                                                                                     var endings = ["The answer lies with Tom Bombadil.", "Sauron destroyed the Entwives, but a remnant may still be found in Barad-dûr.", "Trust a fox, think outside the box.", ]
                                                                                     var ending = endings[Math.floor(Math.random() * endings.length)];
                                                                                     return {
-                                                                                        text: "The palantir begins to glow and swirl in colors. It tells you: **" + ending,
+                                                                                        text: "The palantir begins to glow and swirl in colors. It tells you: **" + ending + "**THE END",
                                                                                         background: "",
                                                                                         img: "images/palantirglow.png",
                                                                                         options: []
@@ -194,7 +194,7 @@ function quest(playerName) {
                                                                                                 text: "Next",
                                                                                                 outcome: function () {
                                                                                                     return {
-                                                                                                        text: "It opens its eyes and looks back at you. You feel stricken by its gaze. \"Hello " + playerName + "\" it says. \"I’m glad you’re back.\" A series of realizations dawn on you in rapid succession. Who needs Entwives when there are regular Ents all around you? Gender isn’t real anyway! There’s no reason you can’t just have an Entspouse! You smile back.",
+                                                                                                        text: "It opens its eyes and looks back at you. You feel stricken by its gaze. \"Hello " + playerName + "\" it says. \"I’m glad you’re back.\" A series of realizations dawn on you in rapid succession. Who needs Entwives when there are regular Ents all around you? Gender isn’t real anyway! There’s no reason you can’t just have an Entspouse! You smile back.**THE END",
                                                                                                         background: "images/fangornbg.png",
                                                                                                         img: "images/entbf.png",
                                                                                                         options: []
@@ -208,7 +208,7 @@ function quest(playerName) {
                                                                                     text: "Kill the fox for his impudence",
                                                                                     outcome: function () {
                                                                                         return {
-                                                                                            text: "Enraged by his impudence, you strike out a mighty limb against the fox. His body is crushed in one fell swoop. Instantly overcome with regret at your violent outburst, you sink to the ground and remain there forever.",
+                                                                                            text: "Enraged by his impudence, you strike out a mighty limb against the fox. His body is crushed in one fell swoop. Instantly overcome with regret at your violent outburst, you sink to the ground and remain there forever.**THE END",
                                                                                             background: "images/rohan.png",
                                                                                             img: "images/deadfox.png",
                                                                                             options: []
@@ -252,7 +252,7 @@ function quest(playerName) {
                                             outcome: function () {
                                                 return {
                                                     text: "\"Well lovely!\" exclaimed the Hobbit. \"Now come along with me to The Shire. I’ll make you a hearty mushroom stew and tell you all about how the brave and valiant Hobbits of Old discovered the Ents and led them to victory against great evil.\" " +
-                                                        " ... You find that you are the center of attention in The Shire. Many stories and many meals later, your roots have grown thick and weary, grounded forever. You become Ent of The Shire, and your quest ends there.",
+                                                        " ... You find that you are the center of attention in The Shire. Many stories and many meals later, your roots have grown thick and weary, grounded forever. You become Ent of The Shire, and your quest ends there.**THE END",
                                                     background: "images/oldforest.png",
                                                     img: "images/friendlyhobbit.png",
                                                     options: []
@@ -293,7 +293,7 @@ function quest(playerName) {
                                                                                                 text: "Next",
                                                                                                 outcome: function () {
                                                                                                     return {
-                                                                                                        text: "\"Oh my oh my what a noble quest! And how well you’ve done to find me here! I know it must not have been easy, but rejoice! For I have the answer you seek!\"**Hear me now oh fair Entwives*Wake from your slumber, resume your Ent-lives!*An Ent is seeking you in the ancient forest*So open your eyes and join the chorus!*",
+                                                                                                        text: "\"Oh my oh my what a noble quest! And how well you’ve done to find me here! I know it must not have been easy, but rejoice! For I have the answer you seek!\"**Hear me now oh fair Entwives*Wake from your slumber, resume your Ent-lives!*An Ent is seeking you in the ancient forest*So open your eyes and join the chorus!**THE END",
                                                                                                         background: "images/oldforest.png",
                                                                                                         img: "images/bombadil.png",
                                                                                                         options: []
@@ -311,7 +311,7 @@ function quest(playerName) {
                                                                         outcome: function () {
                                                                             return {
                                                                                 text: "A fox crosses your path and looks you in the eyes. You ponder the existence of the fox, but arrive at the conclusion that it is meaningless. Then you wonder whether this is the greater metaphor: perhaps life is meaningless? " +
-                                                                                    "You dislike that possibility, so maybe the fox does have meaning after all. You continue pondering this philosophical dilemma. Forever. To be continued ...",
+                                                                                    "You dislike that possibility, so maybe the fox does have meaning after all. You continue pondering this philosophical dilemma. Forever.**THE END",
                                                                                 background: "images/oldforest.png",
                                                                                 img: "images/carfax.png",
                                                                                 options: []
