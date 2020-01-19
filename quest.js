@@ -7,13 +7,11 @@ function quest(playerName) {
                 text: "North",
                 outcome: function () {
                     return {
-                        text: "You enter the woods of Lothlórien. It’s beautiful here, and the trees are unlike any you’ve seen in Fangorn Forest. Still, it feels somehow ... foreboding. " +
-                            "Suddenly you become aware of a company of Elves surrounding you, arrows notched on their bows and sharp swords at their sides. Your skin is strong, but you’ll be no match against them. You surrender and are taken captive. " +
-                            "Later, one of the elves approaches you alone. \"You’re an Ent, aren’t you?\" he asks. \"I think I know what you’re looking for. I can help.\"",
-                        background: "",
+                        text: "You enter the woods of Lothlórien. It’s beautiful here, and the trees are unlike any you’ve seen in Fangorn Forest. Still, it feels somehow ... foreboding.",
+                        background: "images/lorien.png",
                         img: "",
                         options: [{
-                            text: "Trust the Elf",
+                            text: "Next",
                             outcome: function () {
                                 return {
                                     text: ""
@@ -41,14 +39,14 @@ function quest(playerName) {
                                     },
                                     {
                                         text: "The sun is now behind you, and you can see in the dimming light a tower standing in front of you. Not knowing where else to go, you walk through the doors. It appears deserted. You come into a room filled with curiosities: it seems to be some sort of trophy room. Most of the trophies are insignificant to you, but in a corner lies a peculiar object that seems to be calling to you. You’re not sure why, but you know that it’s important.",
-                                        background: "images/tower.png",
+                                        background: "images/darktower.png",
                                         img: "",
                                         options: [{
                                             text: "Take object",
                                             outcome: function () {
                                                 return {
                                                     text: "You pick it up and carry it out of the tower.",
-                                                    background: "images/tower.png",
+                                                    background: "images/darktower.png",
                                                     img: "images/seed.png",
                                                     options: []
                                                 }
@@ -89,21 +87,21 @@ function quest(playerName) {
                                                         outcome: function () {
                                                             return {
                                                                 text: "At last, you arrive at a tall white tower. “Within this tower is a palantír,” he says. “Look into it and you may see what has become of your Entwives.\"",
-                                                                background: "images/tower.png",
+                                                                background: "images/whitetower.png",
                                                                 img: "images/rohirrim.png",
                                                                 options: [{
                                                                     text: "Look",
                                                                     outcome: function () {
                                                                         return {
                                                                             text: "You enter the tower and find what appears to be a large glass ball.",
-                                                                            background: "images/tower.png",
+                                                                            background: "images/whitetower.png",
                                                                             img: "images/palantir.png",
                                                                             options: [{
                                                                                 text: "Touch",
                                                                                 outcome: function () {
                                                                                     return {
                                                                                         text: "The palantir begins to glow and swirl in colors.",
-                                                                                        background: "images/tower.png",
+                                                                                        background: "images/whitetower.png",
                                                                                         img: "images/palantirglow.png",
                                                                                         options: []
                                                                                     }
@@ -166,7 +164,7 @@ function quest(playerName) {
                                                                                         return {
                                                                                             text: "Enraged by his impudence, you strike out a mighty limb against the fox. His body is crushed in one fell swoop. Instantly overcome with regret at your violent outburst, you sink to the ground and remain there forever.",
                                                                                             background: "images/rohan.png",
-                                                                                            img: "",
+                                                                                            img: "images/deadfox.png",
                                                                                             options: []
                                                                                         }
                                                                                     }
