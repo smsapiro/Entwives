@@ -25,6 +25,7 @@
     background-image: url("images/fangornbg.png");
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
     margin: auto;
     min-height: 600px;
     min-width: 600px;

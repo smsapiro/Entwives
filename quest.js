@@ -14,7 +14,42 @@ function quest(playerName) {
                             text: "Next",
                             outcome: function () {
                                 return {
-                                    text: ""
+                                    text: "Suddenly you become aware of a company of Elves surrounding you, arrows notched on their bows and sharp swords at their sides. Your skin is strong, but you’ll be no match against them.",
+                                    background: "images/elfattack.png",
+                                    img: "",
+                                    options: [{
+                                        text: "Surrender",
+                                        outcome: function () {
+                                            return {
+                                                text: "You are taken captive. Later, one of the elves approaches you alone. \"You’re an Ent, aren’t you?\" he asks. \"I think I know what you’re looking for. I can help.\"",
+                                                background: "images/lorien.png",
+                                                img: "images/goodelf.png",
+                                                options: [{
+                                                        text: "Decline help, ask to be set free",
+                                                        outcome: function () {
+                                                            return {
+                                                                text: "\"I’m sorry,\" says the Elf. \"I cannot let you go.\" The rest of the Elves return and begin to sing. You discover that you are rooted to the forest floor, completely immobilized. The singing of the Elves fades away as you slip out of consciousness.",
+                                                                background: "images/elfattack.png",
+                                                                img: "images/goodelf.png",
+                                                                options: []
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        text: "Trust",
+                                                        outcome: function () {
+                                                            return {
+                                                                text: "\"Come with me,\" says the Elf. You follow him through the woods for many miles. At last, you reach a grove of trees different from the rest of Lothlórien. \"I think you know what these trees are,\" says the Elf. \"Are they still alive? Whether they’re alive in the same way they used to be, I cannot say. They are as alive as any tree in this forest.\" You look at them for a long time.",
+                                                                background: "images/lorien.png",
+                                                                img: "images/goodelf.png",
+                                                                options: []
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }]
                                 }
                             }
                         }]
@@ -94,14 +129,14 @@ function quest(playerName) {
                                                                     outcome: function () {
                                                                         return {
                                                                             text: "You enter the tower and find what appears to be a large glass ball.",
-                                                                            background: "images/whitetower.png",
+                                                                            background: "",
                                                                             img: "images/palantir.png",
                                                                             options: [{
                                                                                 text: "Touch",
                                                                                 outcome: function () {
                                                                                     return {
                                                                                         text: "The palantir begins to glow and swirl in colors.",
-                                                                                        background: "images/whitetower.png",
+                                                                                        background: "",
                                                                                         img: "images/palantirglow.png",
                                                                                         options: []
                                                                                     }
