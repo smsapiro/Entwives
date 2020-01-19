@@ -70,7 +70,17 @@ function quest(playerName) {
                                         text: "You are jolted back to awareness by the jeering cries of Orcs. \"What’s this!\" one shouts. \"One of them tree demons?! This time he’s all alone, not got the whole forest on his side!\" You grab one of the Orcs, pick him up and throw him far away, but as you turn toward the second one he swings his axe into your abdomen. You cry out in pain and collapse to the ground.",
                                         background: "images/brownlands.png",
                                         img: "images/orcs.png",
-                                        options: []
+                                        options: [{
+                                            text: "Die",
+                                            outcome: function () {
+                                                return {
+                                                    text: "You died.",
+                                                    background: "images/deadbg.png",
+                                                    img: "",
+                                                    options: []
+                                                }
+                                            }
+                                        }]
                                     },
                                     {
                                         text: "The sun is now behind you, and you can see in the dimming light a tower standing in front of you. Not knowing where else to go, you walk through the doors. It appears deserted. You come into a room filled with curiosities: it seems to be some sort of trophy room. Most of the trophies are insignificant to you, but in a corner lies a peculiar object that seems to be calling to you. You’re not sure why, but you know that it’s important.",
@@ -134,8 +144,10 @@ function quest(playerName) {
                                                                             options: [{
                                                                                 text: "Touch",
                                                                                 outcome: function () {
+                                                                                    var endings = ["The answer lies with Tom Bombadil.", "Sauron destroyed the Entwives, but a remnant may still be found in Barad-dûr.", "Trust a fox, think outside the box.", ]
+                                                                                    var ending = endings[Math.floor(Math.random() * endings.length)];
                                                                                     return {
-                                                                                        text: "The palantir begins to glow and swirl in colors.",
+                                                                                        text: "The palantir begins to glow and swirl in colors. It tells you: **" + ending,
                                                                                         background: "",
                                                                                         img: "images/palantirglow.png",
                                                                                         options: []
@@ -282,7 +294,7 @@ function quest(playerName) {
                                                                                                 text: "Next",
                                                                                                 outcome: function () {
                                                                                                     return {
-                                                                                                        text: "\"Oh my oh my what a noble quest! And how well you’ve done to find me here! I know it must not have been easy, but rejoice! For I have the answer you seek!\" ",
+                                                                                                        text: "\"Oh my oh my what a noble quest! And how well you’ve done to find me here! I know it must not have been easy, but rejoice! For I have the answer you seek!\"**Hear me now oh fair Entwives*Wake from your slumber, resume your Ent-lives!*An Ent is seeking you in the ancient forest*So open your eyes and join the chorus!*",
                                                                                                         background: "images/oldforest.png",
                                                                                                         img: "images/bombadil.png",
                                                                                                         options: []
